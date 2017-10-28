@@ -11,7 +11,8 @@ class TmdbApi:
         self.config = Config().cfg["api"]["tmdb"]
         self.headers = {"Authorization": self.config["user_token"]}
         self.config["configuration"] = self.configuration()
-        log.debug("TMDB configuration: {}".format(self.config["configuration"]))
+        log.debug("TMDB image base_url: {}".format(
+            self.config["configuration"]["images"]["base_url"]))
 
     def configuration(self):
         return self._send_request("GET", "/configuration", 200, get_data=True)
@@ -21,7 +22,9 @@ class TmdbApi:
         url = "{}{}?api_key={}".format(self.config["base_url"], route,
                                        self.config["key"])
 
-        log.debug("Sending {} request to URL: {}".format(method, url))
+        log.debug(
+            "Sending {} request to URL: {}. headers: {}".format(method, url,
+                                                                self.headers))
         response = requests.request(method, url)
         if response.status_code != status_code:
             raise RuntimeError("Wrong return code: {} (expected: {})".format(
