@@ -6,8 +6,9 @@ class Log(object):
 
     @staticmethod
     def get_logger(name):
-        log = logging.getLogger(__name__)
+        log = logging.getLogger(name)
         Log().format_logger(log)
+        log.propagate = False
 
         return log
 
@@ -22,3 +23,4 @@ class Log(object):
         ch = logging.StreamHandler(sys.stdout)
         ch.setFormatter(log_format)
         log.addHandler(ch)
+
