@@ -1,7 +1,7 @@
 # Pre requirements
 
 * python2.7
-* pip install flask
+* pip install -r requirements.txt
 
 # Flask run example
 
