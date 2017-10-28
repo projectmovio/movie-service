@@ -1,10 +1,9 @@
 from flask import Flask
 
-from service import Service
+from api.tmdb import TmdbApi
 
 app = Flask(__name__)
-service = Service()
-
+tmdb_api = TmdbApi()
 
 @app.route("/")
 def hello():
