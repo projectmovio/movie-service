@@ -5,7 +5,6 @@ log = Log().get_logger(__name__)
 
 
 class TmdbApi(BaseApi):
-
     def __init__(self):
         super(TmdbApi, self).__init__()
         self.config = self.config["tmdb"]
@@ -16,3 +15,7 @@ class TmdbApi(BaseApi):
 
     def configuration(self):
         return self._send_request("GET", "/configuration", 200, get_data=True)
+
+    def search(self, movie_name):
+        return self._send_request("GET", "/search", 200, {"query": movie_name},
+                                  get_data=True)
