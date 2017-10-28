@@ -16,5 +16,3 @@ class TmdbApi(BaseApi):
 
     def configuration(self):
         return self._send_request("GET", "/configuration", 200, get_data=True)
-
-

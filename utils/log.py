@@ -9,7 +9,6 @@ class Log(object):
         log = logging.getLogger(name)
         Log().format_logger(log)
         log.propagate = False
-
         return log
 
     @staticmethod
@@ -23,4 +22,3 @@ class Log(object):
         ch = logging.StreamHandler(sys.stdout)
         ch.setFormatter(log_format)
         log.addHandler(ch)
-

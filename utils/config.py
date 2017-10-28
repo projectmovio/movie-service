@@ -18,4 +18,3 @@ class Config(object):
         log.debug("Reading config from: {}".format(self.config_path))
         with open(self.config_path) as config_file:
             self.cfg = json.load(config_file)
-
