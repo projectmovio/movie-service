@@ -1,0 +1,11 @@
+Search for movies
+---
+tags:
+  - Movies
+parameters:
+  - in: query
+    name: search
+    description: movie title to search for
+responses:
+  200:
+    description: test

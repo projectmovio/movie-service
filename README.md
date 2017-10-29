@@ -7,4 +7,9 @@
 
 * set FLASK_APP=service/server.py
 * flask run
-* API base URL: `localhost:5000/`
+* API base URL: `http://localhost:5000/`
+
+# API docs
+
+For api docs go to http://localhost:5000/apidocs
+
