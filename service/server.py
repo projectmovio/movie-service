@@ -3,7 +3,28 @@ from flask import Flask, request, jsonify
 from api.tmdb import TmdbApi
 
 app = Flask(__name__)
-Swagger(app)
+swagger_template = {
+  "swagger": "2.0",
+  "info": {
+    "title": "Movio movie service api",
+    "description": "API to get and update movie information",
+    "contact": {
+      "responsibleOrganization": "Michal Sadowski",
+      "responsibleDeveloper": "Michal Sadowski",
+      "email": "michcio90po@gmail.com",
+      "url": "test",
+    },
+    "termsOfService": "test",
+    "version": "0.0.0"
+  },
+  "host": "localhost:5000",  # overrides localhost:5000
+  "basePath": "/api",  # base bash for blueprint registration
+  "schemes": [
+    "http",
+    "https"
+  ]
+}
+Swagger(app, template=swagger_template)
 
 tmdb_api = TmdbApi()
 
