@@ -3,10 +3,9 @@
 * python2.7
 * pip install -r requirements.txt
 
-# Flask run example
+# Start server
 
-* set FLASK_APP=service/server.py
-* flask run
+* python run_flask.py
 * API base URL: `http://localhost:5000/`
 
 # API docs
