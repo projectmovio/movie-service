@@ -4,6 +4,7 @@ tags:
   - Movies
 parameters:
   - in: query
+    type: string
     name: search
     description: movie title to search for
 responses:

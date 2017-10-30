@@ -2,12 +2,11 @@
 basePath: "/"
 definitions:
   Movie:
-    propeties:
+    properties:
       id:
         type: integer
       title:
         type: string
-    type: object
   Movies:
     properties:
       page:
@@ -16,7 +15,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Movie'
-
 info:
   description: Serving routes for movie operations
   termsOfService: "/tos"
