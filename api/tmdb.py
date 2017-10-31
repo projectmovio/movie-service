@@ -14,9 +14,9 @@ class TmdbApi(BaseApi):
             self.config["configuration"]["images"]["base_url"]))
 
     def configuration(self):
-        return self._send_request("GET", "/configuration", 200, get_data=True)
+        return self._send_request("GET", "/configuration", get_data=True)
 
     def search(self, movie_name):
-        return self._send_request("GET", "/search/movie", 200,
+        return self._send_request("GET", "/search/movie",
                                   {"query": movie_name},
                                   get_data=True)
