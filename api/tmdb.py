@@ -1,3 +1,5 @@
+from flask import jsonify
+
 from base_api import BaseApi
 from utils.log import Log
 
@@ -14,9 +16,21 @@ class TmdbApi(BaseApi):
             self.config["configuration"]["images"]["base_url"]))
 
     def configuration(self):
-        return self._send_request("GET", "/configuration", get_data=True)
+        return self._get("/configuration")
 
     def search(self, movie_name):
-        return self._send_request("GET", "/search/movie",
-                                  {"query": movie_name},
-                                  get_data=True)
+        return self._get("/search/movie", {"query": movie_name})
+
+    def get_movies(self):
+        result = []
+        movies1 = self._get("/discover/movie?sort_by=popularity.desc",
+                            {"page": 1})
+        movies2 = self._get("/discover/movie?sort_by=popularity.desc",
+                            {"page": 2})
+        movies3 = self._get("/discover/movie?sort_by=popularity.desc",
+                            {"page": 3})
+
+        result.extend(movies1['results']).extend(
+            movies2['results'].extend(movies3['results']))
+
+        return jsonify(movies=result)
