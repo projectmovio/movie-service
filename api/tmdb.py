@@ -19,7 +19,7 @@ class TmdbApi(BaseApi):
         return self._get("/configuration")
 
     def search(self, movie_name):
-        return self._get("/search/movie", {"query": movie_name})
+        return jsonify(self._get("/search/movie", {"query": movie_name}))
 
     def get_movies(self):
         result = []
