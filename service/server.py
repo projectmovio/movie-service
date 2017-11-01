@@ -1,4 +1,3 @@
-import requests
 from flasgger import swag_from, Swagger
 from flask import Flask, request, jsonify
 from api.tmdb import TmdbApi
@@ -17,7 +16,7 @@ def hello():
 @app.route("/movies", methods=["get"])
 @swag_from("swagger/movies.yml")
 def movies():
-    if "search" in requests.args:
+    if "search" in request.args:
         search = request.args.get("search")
         return tmdb_api.search(search)
     else:
