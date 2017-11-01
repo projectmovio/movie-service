@@ -16,6 +16,7 @@ class BaseApi(object):
         self.headers = {}
 
     def _post(self, route, url_params={}):
+        url_params["api_key"] = self.api_key
         url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
 
         log.debug("Sending post request to URL: {}. headers: {}"
@@ -24,6 +25,7 @@ class BaseApi(object):
         requests.post(url, headers=self.headers)
 
     def _get(self, route, url_params={}):
+        url_params["api_key"] = self.api_key
         url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
 
         log.debug("Sending post request to URL: {}. headers: {}"
