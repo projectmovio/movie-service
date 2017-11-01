@@ -1,14 +1,20 @@
+from urllib import urlencode
+
+import requests
 from flask import jsonify
-from base_api import BaseApi
 from utils.log import Log
+from utils.config import Config
 
 log = Log().get_logger(__name__)
 
 
-class TmdbApi(BaseApi):
+class TmdbApi:
     def __init__(self):
-        super(TmdbApi, self).__init__()
+        self.config = Config().cfg["api"]["tmdb"]
+        self.api_key = self.config["key"]
+        self.base_url = self.config["base_url"]
         self.headers = {"Authorization": self.config["user_token"]}
+
         self.config["configuration"] = self.configuration()
         log.debug("TMDB image base_url: {}".format(
             self.config["configuration"]["images"]["base_url"]))
@@ -33,3 +39,21 @@ class TmdbApi(BaseApi):
         result.extend(movies3["results"])
 
         return jsonify(movies=result)
+
+    def _post(self, route, url_params={}):
+        url_params["api_key"] = self.api_key
+        url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
+
+        log.debug("Sending post request to URL: {}. headers: {}"
+                  .format(url, self.headers))
+
+        requests.post(url, headers=self.headers)
+
+    def _get(self, route, url_params={}):
+        url_params["api_key"] = self.api_key
+        url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
+
+        log.debug("Sending post request to URL: {}. headers: {}"
+                  .format(url, self.headers))
+
+        return requests.get(url, headers=self.headers).json()
