@@ -10,8 +10,9 @@ log = Log().get_logger(__name__)
 
 class BaseApi(object):
     def __init__(self):
-        self.api_key = Config().cfg["api"]["key"]
-        self.base_url = Config().cfg["base_url"]
+        self.config = Config().cfg["api"]["tmdb"]
+        self.api_key = self.config["key"]
+        self.base_url = self.config["base_url"]
         self.headers = {}
 
     def _post(self, route, url_params={}):
