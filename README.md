@@ -12,3 +12,8 @@
 
 For api docs go to http://localhost:5000/apidocs
 
+# Running in docker
+
+* docker build -t watchlist-service:1.0 .
+* docker run -p 5000:5000 -d -t watchlist-service:1.0
+
