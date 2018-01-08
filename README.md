@@ -8,8 +8,6 @@
 * python run_flask.py
 * API base URL: `http://localhost:5000/`
 
-For more info check the `run_flask.py -h` section
-
 # API docs
 
 For api docs go to http://localhost:5000/apidocs
