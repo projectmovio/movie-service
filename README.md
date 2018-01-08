@@ -17,7 +17,7 @@ For api docs go to http://localhost:5000/apidocs
 # Formatting
 
 * pip install yapf
-* yapf -r -i -vv api/ service/ utils/ run_flask.py
+* yapf -r -i -vv service/ run_flask.py
 
 # Running in docker
 
