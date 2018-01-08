@@ -3,7 +3,6 @@ import sys
 
 
 class Log(object):
-
     @staticmethod
     def get_logger(name):
         log = logging.getLogger(name)
@@ -15,8 +14,7 @@ class Log(object):
     def format_logger(log, level=logging.DEBUG):
         log.setLevel(level)
         # log format
-        log_format = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        log_format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
         # log handler
         ch = logging.StreamHandler(sys.stdout)

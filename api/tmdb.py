@@ -16,8 +16,7 @@ class TmdbApi:
         self.headers = {"Authorization": self.config["user_token"]}
 
         self.config["configuration"] = self.configuration()
-        log.debug("TMDB image base_url: {}".format(
-            self.config["configuration"]["images"]["base_url"]))
+        log.debug("TMDB image base_url: {}".format(self.config["configuration"]["images"]["base_url"]))
 
     def configuration(self):
         return self._get("/configuration")
@@ -27,12 +26,9 @@ class TmdbApi:
 
     def get_movies(self):
         result = []
-        movies1 = self._get("/discover/movie",
-                            {"sort_by": "popularity.desc", "page": 1})
-        movies2 = self._get("/discover/movie",
-                            {"sort_by": "popularity.desc", "page": 2})
-        movies3 = self._get("/discover/movie",
-                            {"sort_by": "popularity.desc", "page": 3})
+        movies1 = self._get("/discover/movie", {"sort_by": "popularity.desc", "page": 1})
+        movies2 = self._get("/discover/movie", {"sort_by": "popularity.desc", "page": 2})
+        movies3 = self._get("/discover/movie", {"sort_by": "popularity.desc", "page": 3})
 
         result.extend(movies1["results"])
         result.extend(movies2["results"])
@@ -44,8 +40,7 @@ class TmdbApi:
         url_params["api_key"] = self.api_key
         url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
 
-        log.debug("Sending post request to URL: {}. headers: {}"
-                  .format(url, self.headers))
+        log.debug("Sending post request to URL: {}. headers: {}".format(url, self.headers))
 
         requests.post(url, headers=self.headers)
 
@@ -53,7 +48,6 @@ class TmdbApi:
         url_params["api_key"] = self.api_key
         url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
 
-        log.debug("Sending post request to URL: {}. headers: {}"
-                  .format(url, self.headers))
+        log.debug("Sending post request to URL: {}. headers: {}".format(url, self.headers))
 
         return requests.get(url, headers=self.headers).json()

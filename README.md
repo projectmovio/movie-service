@@ -1,7 +1,12 @@
-# Pre requirements
+# Requirements
 
 * python2.7
 * pip install -r requirements.txt
+
+# Formatting
+
+* pip install yapf
+* yapf -r -i -vv api/ service/ utils/ run_flask.py
 
 # Start server
 

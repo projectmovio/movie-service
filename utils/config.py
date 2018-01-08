@@ -8,9 +8,7 @@ log = Log().get_logger(__name__)
 
 class Config(object):
     def __init__(self):
-        self.config_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "..", "config.json")
+        self.config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
         self._read_config()
         log.debug(self.cfg)
 
