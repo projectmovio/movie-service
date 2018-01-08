@@ -1,11 +1,11 @@
+import logging
 from urllib import urlencode
 import requests
 from flask import jsonify
 
 from service.utils.config import Config
-from service.utils.log import Log
 
-log = Log().get_logger(__name__)
+log = logging.getLogger(__name__)
 
 
 class TmdbApi:

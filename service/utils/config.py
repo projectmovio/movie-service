@@ -1,14 +1,15 @@
 import json
+import logging
 import os
 
-from service.utils.log import Log
+log = logging.getLogger(__name__)
 
-log = Log().get_logger(__name__)
 
 class Config(object):
     def __init__(self):
         self.config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "config.json")
         self._read_config()
+        print len(log.handlers)
         log.debug(self.cfg)
 
     def _read_config(self):
