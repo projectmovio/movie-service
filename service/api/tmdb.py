@@ -1,9 +1,9 @@
 from urllib import urlencode
-
 import requests
 from flask import jsonify
-from utils.log import Log
-from utils.config import Config
+
+from service.utils.config import Config
+from service.utils.log import Log
 
 log = Log().get_logger(__name__)
 

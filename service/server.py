@@ -1,7 +1,6 @@
+from api.tmdb import TmdbApi
 from flasgger import swag_from, Swagger
 from flask import Flask, request
-
-from api.tmdb import TmdbApi
 
 app = Flask(__name__)
 Swagger(app, template_file='swagger/template.yml')
