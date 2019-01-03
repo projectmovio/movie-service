@@ -1,5 +1,5 @@
 import logging
-from urllib import urlencode
+from urllib.parse import urlencode
 import requests
 from flask import jsonify
 

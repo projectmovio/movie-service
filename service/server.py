@@ -1,6 +1,6 @@
 import logging
 
-from api.tmdb import TmdbApi
+from .api.tmdb import TmdbApi
 from flasgger import swag_from, Swagger
 from flask import Flask, request
 
