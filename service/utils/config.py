@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 
@@ -7,12 +6,13 @@ log = logging.getLogger(__name__)
 
 class Config(object):
     def __init__(self):
-        self.config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "config.json")
+        self.base_url = "https://api.themoviedb.org/3"
+        self.api_key = ""
         self._read_config()
-        print(len(log.handlers))
-        log.debug(self.cfg)
 
     def _read_config(self):
-        log.debug("Reading config from: {}".format(self.config_path))
-        with open(self.config_path) as config_file:
-            self.cfg = json.load(config_file)
+        api_key_env = os.getenv("MOVIE_SERVICE_API_KEY")
+        if api_key_env is None:
+            raise RuntimeError("Please set MOVIE_SERVICE_API_KEY environment variable")
+        self.api_key = api_key_env
+

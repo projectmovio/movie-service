@@ -10,12 +10,11 @@ log = logging.getLogger(__name__)
 
 class TmdbApi:
     def __init__(self):
-        self.config = Config().cfg["api"]["tmdb"]
-        self.api_key = self.config["key"]
-        self.base_url = self.config["base_url"]
+        self.config = Config()
 
-        self.config["configuration"] = self.configuration()
-        log.debug("TMDB image base_url: {}".format(self.config["configuration"]["images"]["base_url"]))
+        self.configuration = self.configuration()
+        print(self.configuration)
+        log.debug("TMDB image base_url: {}".format(self.configuration["images"]["base_url"]))
 
     def configuration(self):
         return self._get("/configuration")
@@ -36,16 +35,16 @@ class TmdbApi:
         return jsonify(movies=result)
 
     def _post(self, route, url_params={}):
-        url_params["api_key"] = self.api_key
-        url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
+        url_params["api_key"] = self.config.api_key
+        url = "{}{}?{}".format(self.config.base_url, route, urlencode(url_params))
 
         log.debug("Sending post request to URL: {}".format(url))
 
         requests.post(url)
 
     def _get(self, route, url_params={}):
-        url_params["api_key"] = self.api_key
-        url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
+        url_params["api_key"] = self.config.api_key
+        url = "{}{}?{}".format(self.config.base_url, route, urlencode(url_params))
 
         log.debug("Sending post request to URL: {}".format(url))
 
