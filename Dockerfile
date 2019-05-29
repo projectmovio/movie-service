@@ -1,6 +1,6 @@
 FROM python:3.7-alpine3.8
 
-EXPOSE 5000
+EXPOSE 8082
 
 ADD . "/usr/local/src"
 WORKDIR "/usr/local/src"
