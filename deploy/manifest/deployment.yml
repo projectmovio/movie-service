@@ -16,15 +16,15 @@ spec:
     spec:
       containers:
         - name: movie
-          image: projectmovio/movie-service
+          image: projectmovio/movie-service:0.0.2
           ports:
             - containerPort: 8082
           resources:
             requests:
-              memory: "20Mi"
+              memory: "40Mi"
               cpu: "2m"
             limits:
-              memory: "30Mi"
+              memory: "80Mi"
               cpu: "100m"
           env:
             - name: MOVIE_SERVICE_API_KEY
