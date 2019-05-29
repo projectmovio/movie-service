@@ -13,7 +13,6 @@ class TmdbApi:
         self.config = Config().cfg["api"]["tmdb"]
         self.api_key = self.config["key"]
         self.base_url = self.config["base_url"]
-        self.headers = {"Authorization": self.config["user_token"]}
 
         self.config["configuration"] = self.configuration()
         log.debug("TMDB image base_url: {}".format(self.config["configuration"]["images"]["base_url"]))
@@ -40,14 +39,14 @@ class TmdbApi:
         url_params["api_key"] = self.api_key
         url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
 
-        log.debug("Sending post request to URL: {}. headers: {}".format(url, self.headers))
+        log.debug("Sending post request to URL: {}".format(url))
 
-        requests.post(url, headers=self.headers)
+        requests.post(url)
 
     def _get(self, route, url_params={}):
         url_params["api_key"] = self.api_key
         url = "{}{}?{}".format(self.base_url, route, urlencode(url_params))
 
-        log.debug("Sending post request to URL: {}. headers: {}".format(url, self.headers))
+        log.debug("Sending post request to URL: {}".format(url))
 
-        return requests.get(url, headers=self.headers).json()
+        return requests.get(url).json()
