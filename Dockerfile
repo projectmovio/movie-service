@@ -5,7 +5,7 @@ EXPOSE 8082
 RUN apk add --no-cache nginx uwsgi gcc libc-dev linux-headers bash
 RUN pip install uwsgi
 
-ADD movie-serivce-nginx.conf /etc/nginx/conf.d
+ADD nginx.conf /etc/nginx/conf.d
 RUN mkdir /run/nginx
 
 WORKDIR /usr/local/src
