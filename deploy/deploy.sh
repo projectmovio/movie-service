@@ -10,4 +10,6 @@ else
     envsubst '${MOVIE_SERVICE_API_KEY}' < ${DIR}/manifest/deployment.yml > deployment_injected.yml
     kubectl apply -f deployment_injected.yml
     rm deployment_injected.yml
+
+    kubectl apply -f ${DIR}/manifest/service.yml
 fi
