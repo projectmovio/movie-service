@@ -72,11 +72,11 @@ class Movies(core.Stack):
                 "policies": [
                     PolicyStatement(
                         actions=["dynamodb:Query"],
-                        resources=[f"{self.movies.table_arn}/index/tvmaze_id"]
+                        resources=[f"{self.movies_table.table_arn}/index/tvmaze_id"]
                     ),
                     PolicyStatement(
                         actions=["dynamodb:UpdateItem"],
-                        resources=[self.movies.table_arn]
+                        resources=[self.movies_table.table_arn]
                     ),
                 ],
                 "timeout": 10,
