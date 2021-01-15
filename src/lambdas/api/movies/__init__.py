@@ -53,13 +53,13 @@ def _post_movie(body):
     except schema.ValidationException as e:
         return {"statusCode": 400, "body": json.dumps({"message": "Invalid post schema", "error": str(e)})}
 
-    if body["api_name"] == "tmpdb":
+    if body["api_name"] == "tmdb":
         return _post_tmdb(body["api_id"])
 
 
 def _post_tmdb(tmdb_id):
     try:
-        movies_db.get_show_by_api_id("tmdb", int(tmdb_id))
+        movies_db.get_movie_by_api_id("tmdb", int(tmdb_id))
     except movies_db.NotFoundError:
         pass
     else:
@@ -85,7 +85,7 @@ def _get_movie_by_api_id(query_params):
 
     if "tmdb_id" in query_params:
         try:
-            res = movies_db.get_show_by_api_id("tmdb", int(query_params["tmdb_id"]))
+            res = movies_db.get_movie_by_api_id("tmdb", int(query_params["tmdb_id"]))
             return {"statusCode": 200, "body": json.dumps(res, cls=decimal_encoder.DecimalEncoder)}
         except movies_db.NotFoundError:
             return {"statusCode": 404}
