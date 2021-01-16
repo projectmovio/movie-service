@@ -72,7 +72,7 @@ class Movies(core.Stack):
                 "policies": [
                     PolicyStatement(
                         actions=["dynamodb:Query"],
-                        resources=[f"{self.movies_table.table_arn}/index/tvmaze_id"]
+                        resources=[f"{self.movies_table.table_arn}/index/tmdb_id"]
                     ),
                     PolicyStatement(
                         actions=["dynamodb:UpdateItem"],
