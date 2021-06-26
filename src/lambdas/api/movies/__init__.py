@@ -83,11 +83,32 @@ def _get_movie_by_api_id(query_params):
             "body": json.dumps({"error": "Please specify query parameters"})
         }
 
-    if "tmdb_id" in query_params:
+    if "api_id" not in query_params:
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "Missing api_id query parameter"})
+        }
+
+    if "api_name" not in query_params:
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "Missing api_name query parameter"})
+        }
+
+    api_id = int(query_params["api_id"])
+    api_name = query_params["api_name"]
+
+    if api_name in ["tmdb"]:
         try:
-            res = movies_db.get_movie_by_api_id("tmdb", int(query_params["tmdb_id"]))
-            return {"statusCode": 200, "body": json.dumps(res, cls=decimal_encoder.DecimalEncoder)}
+            res = movies_db.get_movie_by_api_id(api_name, api_id)
+            return {
+                "statusCode": 200,
+                "body": json.dumps(res, cls=decimal_encoder.DecimalEncoder)
+            }
         except movies_db.NotFoundError:
             return {"statusCode": 404}
     else:
-        return {"statusCode": 400, "body": json.dumps({"error": "Unsupported query param"})}
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "Unsupported query param"})
+        }
